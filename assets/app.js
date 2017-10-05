@@ -19,7 +19,7 @@ $("#add-user").on("click", function(event) {
   // Capture user inputs and store them into variables
   var name = $("#employeeName").val().trim();
   var role = $("#role").val().trim();
-  var year = $("#startDate").val().trim();
+  var date = $("#startDate").val().trim();
   var rate = $("#monthlyRate").val().trim();
 
   // Console log each of the user inputs to confirm we are receiving them
@@ -31,14 +31,27 @@ $("#add-user").on("click", function(event) {
   database.ref().push({
     "name": name,
     "role": role,
-    "year": year,
-    "rate": rate
+    "date": date,
+    "rate": rate,
+    "dateAdded": firebase.database.ServerValue.TIMESTAMP
   });
 });
 
 // By default display the content from localStorage
+database.ref().on("child-added", function(childSnapshot) {
+
+}, function(errorObject) {
+  console.log("Error: " + errorObject.code);
+}
 $("#name-display").text(localStorage.getItem("name"));
 $("#email-display").text(localStorage.getItem("email"));
 $("#age-display").text(localStorage.getItem("age"));
 $("#comment-display").text(localStorage.getItem("comment"));
 
+
+database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(snapshot) {
+  $("#employeeName").html(snapshot.val().name);
+  $("#role").html(snapshot.val().role);
+  $("#startDate").html(snapshot.val().date);
+  $("#monthlyRate").html(snapshot.val().rate);
+})
