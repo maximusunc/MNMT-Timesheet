@@ -1,3 +1,16 @@
+// Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBuSWnNsmjrlntp9Ied-ks4x75sZa7CV14",
+    authDomain: "mnmt-timesheet.firebaseapp.com",
+    databaseURL: "https://mnmt-timesheet.firebaseio.com",
+    projectId: "mnmt-timesheet",
+    storageBucket: "",
+    messagingSenderId: "705744610167"
+  };
+  firebase.initializeApp(config);
+
+  var database = firebase.database();
+
 // Capture Button Click
   $("#add-user").on("click", function(event) {
     // prevent page from refreshing when form tries to submit itself
