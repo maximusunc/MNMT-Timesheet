@@ -25,7 +25,7 @@ $("#add-user").on("click", function(event) {
   // Console log each of the user inputs to confirm we are receiving them
   console.log(name);
   console.log(role);
-  console.log(year);
+  console.log(date);
   console.log(rate);
 
   database.ref().push({
@@ -38,20 +38,20 @@ $("#add-user").on("click", function(event) {
 });
 
 // By default display the content from localStorage
-database.ref().on("child-added", function(childSnapshot) {
+// database.ref().on("child-added", function(childSnapshot) {
 
-}, function(errorObject) {
-  console.log("Error: " + errorObject.code);
-}
-$("#name-display").text(localStorage.getItem("name"));
-$("#email-display").text(localStorage.getItem("email"));
-$("#age-display").text(localStorage.getItem("age"));
-$("#comment-display").text(localStorage.getItem("comment"));
+// }, function(errorObject) {
+//   console.log("Error: " + errorObject.code);
+// });
+// $("#name-display").text(localStorage.getItem("name"));
+// $("#email-display").text(localStorage.getItem("email"));
+// $("#age-display").text(localStorage.getItem("age"));
+// $("#comment-display").text(localStorage.getItem("comment"));
 
 
-database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(snapshot) {
-  $("#employeeName").html(snapshot.val().name);
-  $("#role").html(snapshot.val().role);
-  $("#startDate").html(snapshot.val().date);
-  $("#monthlyRate").html(snapshot.val().rate);
-})
+// database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(snapshot) {
+//   $("#employeeName").html(snapshot.val().name);
+//   $("#role").html(snapshot.val().role);
+//   $("#startDate").html(snapshot.val().date);
+//   $("#monthlyRate").html(snapshot.val().rate);
+// })
