@@ -22,3 +22,8 @@ $("#add-user").on("click", function(event) {
   $("#comment-display").html(comment);
 
 });
+
+localStorage.setItem("name", name);
+  localStorage.setItem("email",email);
+  localStorage.setItem("age", age);
+  localStorage.setItem("comment", comment);
