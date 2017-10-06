@@ -38,15 +38,13 @@ $("#add-user").on("click", function(event) {
 });
 
 // By default display the content from localStorage
-// database.ref().on("child-added", function(childSnapshot) {
+database.ref().on("child_added", function(childSnapshot) {
 
-// }, function(errorObject) {
-//   console.log("Error: " + errorObject.code);
-// });
-// $("#name-display").text(localStorage.getItem("name"));
-// $("#email-display").text(localStorage.getItem("email"));
-// $("#age-display").text(localStorage.getItem("age"));
-// $("#comment-display").text(localStorage.getItem("comment"));
+  $("tbody").append("<tr><td>" + childSnapshot.val().name + "</td><td>" + childSnapshot.val().role + "</td><td>" + childSnapshot.val().date + "</td><td>" + childSnapshot.val().date + "</td><td>" + childSnapshot.val().rate + "</td><td>" + childSnapshot.val().rate + "</td></tr>");
+}, function(errorObject) {
+  console.log("Error: " + errorObject.code);
+});
+
 
 
 // database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(snapshot) {
@@ -54,4 +52,4 @@ $("#add-user").on("click", function(event) {
 //   $("#role").html(snapshot.val().role);
 //   $("#startDate").html(snapshot.val().date);
 //   $("#monthlyRate").html(snapshot.val().rate);
-// })
+// });
