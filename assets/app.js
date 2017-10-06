@@ -39,8 +39,13 @@ $("#add-user").on("click", function(event) {
 
 // By default display the content from localStorage
 database.ref().on("child_added", function(childSnapshot) {
-
-  $("tbody").append("<tr><td>" + childSnapshot.val().name + "</td><td>" + childSnapshot.val().role + "</td><td>" + childSnapshot.val().date + "</td><td>" + childSnapshot.val().date + "</td><td>" + childSnapshot.val().rate + "</td><td>" + childSnapshot.val().rate + "</td></tr>");
+  var randomFormat = "DD/MM/YY";
+  var convertedDate = moment(childSnapshot.val().date, randomFormat);
+  console.log(convertedDate)
+  var monthsWorked = moment().diff(moment(convertedDate), "months");
+  console.log(monthsWorked);
+  var monthsBilled = monthsWorked * childSnapshot.val().rate;
+  $("tbody").append("<tr><td>" + childSnapshot.val().name + "</td><td>" + childSnapshot.val().role + "</td><td>" + childSnapshot.val().date + "</td><td>" + monthsWorked + "</td><td>" + childSnapshot.val().rate + "</td><td>" + monthsBilled + "</td></tr>");
 }, function(errorObject) {
   console.log("Error: " + errorObject.code);
 });
